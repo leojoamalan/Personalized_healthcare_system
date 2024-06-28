@@ -1,0 +1,131 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*:focus{
+    outline: auto;
+}
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+
+.home {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Define 4 equal columns */
+    gap: 10px; /* Space between grid items */
+    padding: 20px;
+    background-color: #edecec;
+    max-width: 1200px; /* Increased max-width to accommodate larger boxes */
+    margin: auto auto;
+    border-radius: 25px;
+    
+}
+.home h3{
+    margin-bottom: 10px;
+}
+
+.grid-item {
+    background-color: #fff;
+    padding: 5% 5% ; /* Increased padding for larger content area */
+    margin: auto;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    font-size: 1em; /* Increased font size for better visibility */
+    height: 100%; /* Set a fixed height for the boxes */
+    border-radius: 25px;
+}
+.intro {
+    text-align: center;
+    text-transform: none;
+    padding: 10% 10% ;
+}
+.About{
+    padding: 10% 10%;
+}
+p {
+    margin-bottom: 20px; /* Space between paragraphs */
+}
+
+.spacing {
+    line-gap-override: 10px;
+    word-spacing: 10px; /* Space between words */
+}
+.navbar {
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    border-radius: 25px;
+    background-color: #016ffe;
+}
+.navbar a {
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+
+main {
+    padding: 2em;
+}
+
+section {
+    margin-bottom: 2em;
+}
+
+form {
+    float: right;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    justify-content: right;
+    margin: 0 auto;
+    color: black;
+    
+}
+
+form label {
+    margin-top: 1em;
+}
+
+form input, form textarea, form button {
+    padding: 0 0 0 0.5em;
+    margin-top: 0.5em;
+}
+
+footer {
+    background-color: #969696;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+.link{
+    /* opacity: 0; */
+    text-align: center;
+    text-transform: capitalize;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.5);
+    display: block;
+    margin: 30px auto;
+}
+
+.link:hover{
+    color:rgb(0, 0, 0);
+}
