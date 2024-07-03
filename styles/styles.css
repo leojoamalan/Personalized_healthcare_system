@@ -1,0 +1,122 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*:focus{
+    outline: auto;
+}
+body{
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items :center;
+    background-image: url("img.jpg");
+    /* background: linear-gradient(180deg, #f1eaea, #949393 , #292828 ); */
+    background-size: cover;
+    background-position: center;
+    font-family: "roboto",sans-serif;
+}
+input,.Signin{
+    width:80%;
+    height: 35px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border:none;
+    color:white;
+    padding: 15px;
+    transition:.5s;
+    text-transform: capitalize;
+}
+input::placeholder{
+    color:rgb(245, 245, 245);
+}
+input:focus,.Signin:hover{
+background: white ;
+color:black;
+}
+input:focus::placeholder{
+color : black;
+}
+/* header {
+    background-color: rgb(90, 102, 232);
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+} */
+.navbar {
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+}
+.navbar a {
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+
+main {
+    padding: 2em;
+}
+
+section {
+    margin-bottom: 2em;
+}
+
+form {
+    float: right;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    justify-content: right;
+    margin: 0 auto;
+    color: black;
+    
+}
+
+form label {
+    margin-top: 1em;
+}
+
+form input, form textarea, form button {
+    padding: 0 0 0 0.5em;
+    margin-top: 0.5em;
+}
+
+footer {
+    background-color: #969696;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+.link{
+    /* opacity: 0; */
+    text-align: center;
+    text-transform: capitalize;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.5);
+    display: block;
+    margin: 30px auto;
+}
+
+.link:hover{
+    color:rgb(0, 0, 0);
+}
