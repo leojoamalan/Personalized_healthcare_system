@@ -97,5 +97,5 @@ medicines.forEach(medicine => {
 });
 
 function Myfunction(){
-    
+    console.log("hello");
 }

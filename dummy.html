@@ -3,415 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medicine and Appointments</title>
-    <link rel="stylesheet" href="styles/styles2.css">
-    <style>
-        /* Reset and basic styling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-        }
-
-        /* Navbar styling */
-        .navbar {
-            width: 100%;
-            overflow: hidden;
-            position: fixed;
-            top: 0;
-            background-color: rgba(255, 255, 255, 0.8);
-            z-index: 1000;
-            border-radius: 25px;
-        }
-
-        .navbar a {
-            float: right;
-            display: block;
-            color: rgb(0, 0, 0);
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        /* Burger menu styling */
-        .burger-menu {
-            display: none; /* Hide initially on larger screens */
-            cursor: pointer;
-        }
-
-        /* Sidebar styling */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 200px;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.8);
-            z-index: 1000;
-            padding-top: 20px;
-            overflow-y: auto;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-out;
-        }
-
-        .sidebar.active {
-            transform: translateX(0);
-        }
-
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .sidebar li {
-            margin-bottom: 10px;
-        }
-
-        .sidebar a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: rgb(0, 0, 0);
-            transition: background-color 0.3s;
-        }
-
-        .sidebar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        /* Main content and slideshow styling */
-        .slideshow-container {
-            width: 100%;
-            position: relative;
-            margin: auto;
-            overflow: hidden;
-            height: 500px;
-            margin-bottom: 10px;
-        }
-
-        .mySlides {
-            display: none;
-        }
-
-        .mySlides img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            padding: 0;
-            margin: 0;
-        }
-
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-        }
-
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-
-        .prev:hover, .next:hover {
-            background-color: rgba(0,0,0,0.8);
-        }
-
-        .dot-container {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            text-align: center;
-        }
-
-        .dot {
-            cursor: pointer;
-            height: 10px;
-            width: 10px;
-            margin: 0 2px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.6s ease;
-        }
-
-        .active, .dot:hover {
-            background-color: #717171;
-        }
-
-        .search-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 1000px;
-            margin: 20px auto;
-            border-radius: 25px;
-            background-color: #ddd;
-            padding: 5px;
-        }
-
-        .search-container input[type="text"] {
-            width: 90%;
-            padding: 10px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-        }
-
-        .search-container button {
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        .search-container button img {
-            width: 25px;
-            height: 25px;
-        }
-
-        .med-Services, .appointment-Services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            margin: auto;
-            max-width: 1200px;
-        }
-
-        .grid-item, .grid-item-appointment {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .grid-item img, .grid-item-appointment img {
-            width: 100%;
-            height: auto;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 15px;
-        }
-
-        .grid-item h3, .grid-item-appointment h3 {
-            margin: 10px 0;
-            font-size: 18px;
-        }
-
-        .grid-item p, .grid-item-appointment p {
-            margin: 5px 0;
-            font-size: 16px;
-        }
-
-        .add-to-cart, .book-appointment {
-            display: inline-block;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .add-to-cart:hover {
-            background-color: #0056b3;
-        }
-
-        .book-appointment {
-            background-color: #28a745;
-        }
-
-        .book-appointment:hover {
-            background-color: #218838;
-        }
-
-        /* Media queries */
-        @media screen and (max-width: 768px) {
-            .navbar {
-                display: none; /* Hide navbar on smaller screens */
-            }
-
-            .burger-menu {
-                display: block; /* Show burger menu on smaller screens */
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                z-index: 1100;
-                font-size: 30px;
-                color: rgb(0, 0, 0);
-            }
-
-            .sidebar {
-                width: 70%; /* Adjust sidebar width for smaller screens */
-            }
-
-            .search-container {
-                width: 90%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles/styles1.css">
+    <title>Document</title>
 </head>
 <body>
     <header>
         <div class="navbar">
             <a href="#contact">Contact</a>
             <a href="#pricing">Medicine</a>
-            <a href="#appointments">Appointments</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
+            <a href="#About">About</a>
+            <a href="#Services">Services</a>
             <a href="#home">Home</a>
         </div>
-        <div class="burger-menu" onclick="toggleSidebar()">
-            &#9776; <!-- Unicode for hamburger icon -->
-        </div>
     </header>
-
-    <aside class="sidebar" id="sidebar">
-        <ul>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#pricing">Medicine</a></li>
-            <li><a href="#appointments">Appointments</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#home">Home</a></li>
-            <!-- Add more list items as needed -->
-        </ul>
-    </aside>
-
     <main>
-        <div class="slideshow-container">
-            <div class="mySlides">
-                <img src="images/med-ban.jpg" alt="Slide 1">
+        <div id="home" class="intro"> 
+           <h1>Personalized HealthCare</h1>
+        </div>
+        <div id="home" class="home">
+            <div class="content">
+                <h2>Your Health, Your Way: Personalized Care, Powered by Technology!</h2>
+                <p>Review your health report to understand risks and take preventive measures against diseases. Stay informed and proactive for a healthier future.</p>
+                <button class="explore">Explore us</button>
             </div>
-            <div class="mySlides">
-                <img src="images/med-ban2.jpg" alt="Slide 2">
+            <img src="images/doc.png" alt="doctor">
+        </div>
+        <div id="Services" class="Services">
+            <div class="grid-item">
+                <a href="https://annotation1-fiqc8ihdzaisruxa44cpyk.streamlit.app/" target="_blank">
+                    <h3>Scan Analysis</h3>
+                </a>
+                <p class="spacing">We specialize in analyzing and interpreting various scan reports such as X-rays, MRIs, and more. Our advanced AI technology meticulously reads and annotates scan differences, offering insightful suggestions for further examination or treatment recommendations.</p>
             </div>
-            <div class="mySlides">
-                <img src="images/med-ban3.jpg" alt="Slide 3">
+            <div class="grid-item">
+                <h3>Medicinal Description</h3>
+                <p class="spacing">We specialize in advanced healthcare analytics. Our cutting-edge technology allows us to analyze medical scan reports, read and verify doctor prescriptions, and extract detailed information about prescribed medications. Whether you're a healthcare provider looking to streamline prescription management or a patient seeking clarity on your medical instructions, our platform ensures accuracy and efficiency.</p>
             </div>
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-            <div class="dot-container">
-                <span class="dot" onclick="currentSlide(1)"></span> 
-                <span class="dot" onclick="currentSlide(2)"></span> 
-                <span class="dot" onclick="currentSlide(3)"></span> 
+            <div class="grid-item">
+                <h3>Book Appointment</h3>
+                <p class="spacing">Discover a seamless way to book appointments with specialists across various fields of medicine. Whether you prefer the convenience of online booking or the personal touch of offline scheduling, we've got you covered.</p>
+            </div>
+            <div class="grid-item">
+                <h3>Get Medicine</h3>
+                <p class="spacing">Explore our comprehensive range of medications, from over-the-counter essentials to specialty prescriptions. Purchase with confidence through our secure online portal, ensuring prompt delivery to your doorstep.</p>
             </div>
         </div>
-        <div class="search-container">
-            <input type="text" class="search" placeholder="Enter the medicine name or ID">
-            <button type="submit"><img src="images/search.png" alt="Search"></button>
+        <div id="About" class="About">
+            <div class="content1">
+                <div class="about-text">
+                    <h2>About Us</h2>
+                    <p>Welcome to SCAXXX, where we specialize in advanced diagnostics including X-rays, MRI, CT scans, ultrasounds, and mammography. Utilizing state-of-the-art imaging technology, we ensure accurate and timely diagnoses. Our expert radiologists provide detailed interpretation of scan reports, while our prescription services verify doctor prescriptions and extract relevant medicines. We offer convenient online and offline appointment bookings with specialist doctors. Our commitment to care focuses on precision, efficiency, patient-centric approaches, and continuous innovation to provide the best possible healthcare solutions.</p>
+                    <button class="explore">Explore us</button>
+                </div>
+                <img src="images/About.jpeg" alt="About Us Image">
+            </div>
         </div>
-
-        <div class="med-Services" id="med-Services">
-            <!-- Grid items dynamically generated with JavaScript -->
+        <div id="pricing" class="medication">
+            <div class="content1">
+                <div class="medication-text">
+                    <h2>Medicines</h2>
+                    <p>At SCAXXX, we offer comprehensive medicine selling services tailored to meet your healthcare needs swiftly and efficiently. Our local medicine service ensures delivery within 24 hours of ordering, providing prompt access to essential medications. For specialized treatments not available locally, our imported medicine service expedites sourcing and delivery within a week, ensuring timely access to vital medications from around the world. Trust us to prioritize your health with reliable and convenient medicine solutions.</p>
+                    <button id="buyButton" class="explore">BUY</button>
+                </div>
+                <img src="images/medication.jpeg" alt="About Us Image">
+            </div>
         </div>
-
-        <div class="appointment-Services" id="appointment-Services">
-            <!-- Grid items dynamically generated with JavaScript -->
+        <div id="contact" class="contact">
+            <div class="form">
+                <h1 class="heading">Contact Us</h1>
+                <input type="text" class="name" placeholder="name" autocomplete="off" required>
+                <input type="text" class="number" placeholder="number" autocomplete="off">
+                <input type="email" class="email" placeholder="email" autocomplete="off">
+                <input type="textbox" class="textbox" placeholder="enter your complaints" autocomplete="off">
+                <button class="Signin">Send</button>
+                <!-- <a href="" class="link">Don't Have an account? Register Now</a> -->
+            </div>
+            <img src="images/hos2.jpg" alt="Image">
         </div>
     </main>
-
     <footer>
-        <!-- Your footer content -->
+        <p>Copyrights reserved @ Scaxxx . 2024</p>
     </footer>
-
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
-        }
-
-        let slideIndex = 1;
-        showSlides(slideIndex);
-
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            let i;
-            const slides = document.getElementsByClassName("mySlides");
-            const dots = document.getElementsByClassName("dot");
-            if (n > slides.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = slides.length}
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex-1].style.display = "block";
-            dots[slideIndex-1].className += " active";
-        }
-
-     
-
-        // Dummy data for appointments
-        const doctorNames = ["Dr. Smith", "Dr. Johnson", "Dr. Brown", "Dr. Williams", "Dr. Jones", "Dr. Miller", "Dr. Davis", "Dr. Wilson"];
-        const specializations = ["Cardiologist", "Dermatologist", "Neurologist", "Pediatrician", "Psychiatrist", "Orthopedic", "Ophthalmologist", "Dentist"];
-        const maxAppointments = 10;
-
-        function getRandomAppointment() {
-            const name = doctorNames[Math.floor(Math.random() * doctorNames.length)];
-            const specialization = specializations[Math.floor(Math.random() * specializations.length)];
-            const imgSrc = `https://via.placeholder.com/150?text=${name}`;
-            return {name, specialization, imgSrc};
-        }
-
-        const appointments = Array.from({length: maxAppointments}, getRandomAppointment);
-
-        const appointmentServicesContainer = document.getElementById('appointment-Services');
-
-        appointments.forEach(appointment => {
-            const gridItem = document.createElement('div');
-            gridItem.classList.add('grid-item-appointment');
-            
-            const img = document.createElement('img');
-            img.src = appointment.imgSrc;
-            img.alt = appointment.name;
-            
-            const name = document.createElement('h3');
-            name.textContent = appointment.name;
-            
-            const specialization = document.createElement('p');
-            specialization.textContent = appointment.specialization;
-            
-            const button = document.createElement('button');
-            button.textContent = "Book Appointment";
-            button.classList.add('book-appointment');
-            
-            gridItem.appendChild(img);
-            gridItem.appendChild(name);
-            gridItem.appendChild(specialization);
-            gridItem.appendChild(button);
-            
-            appointmentServicesContainer.appendChild(gridItem);
-        });
-    </script>
 </body>
 </html>
