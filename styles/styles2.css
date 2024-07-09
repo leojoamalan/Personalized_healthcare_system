@@ -295,3 +295,70 @@ body {
   font-weight: 600;
   padding: 40px 50px;
 }
+.specialist {
+  text-align: center;
+}
+.grid-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.spacing {
+  line-gap-override: 10px;
+  word-spacing: 10px; /* Space between words */
+}
+.appointment-Services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin: auto;
+  max-width: 1200px;
+}
+
+.grid-item, .grid-item-appointment {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.grid-item img, .grid-item-appointment img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;
+}
+
+.grid-item h3, .grid-item-appointment h3 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.grid-item p, .grid-item-appointment p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.add-to-cart, .book-appointment {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.add-to-cart:hover {
+  background-color: #0056b3;
+}
+
+.book-appointment {
+  background-color: #28a745;
+}
+
+.book-appointment:hover {
+  background-color: #218838;
+}

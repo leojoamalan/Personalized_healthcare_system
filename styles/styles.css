@@ -14,7 +14,7 @@ body{
     display:flex;
     justify-content: center;
     align-items :center;
-    background-image: url("img.jpg");
+    background: url(img.jpg);
     /* background: linear-gradient(180deg, #f1eaea, #949393 , #292828 ); */
     background-size: cover;
     background-position: center;

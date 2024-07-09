@@ -95,3 +95,7 @@ medicines.forEach(medicine => {
     
     medServicesContainer.appendChild(gridItem);
 });
+
+function Myfunction(){
+    
+}

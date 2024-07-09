@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medicine</title>
+    <title>Medicine and Appointments</title>
     <link rel="stylesheet" href="styles/styles2.css">
     <style>
         /* Reset and basic styling */
@@ -188,7 +188,7 @@
             height: 25px;
         }
 
-        .med-Services {
+        .med-Services, .appointment-Services {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
@@ -197,7 +197,7 @@
             max-width: 1200px;
         }
 
-        .grid-item {
+        .grid-item, .grid-item-appointment {
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 10px;
@@ -205,24 +205,24 @@
             text-align: center;
         }
 
-        .grid-item img {
+        .grid-item img, .grid-item-appointment img {
             width: 100%;
             height: auto;
             border-bottom: 1px solid #ddd;
             padding-bottom: 15px;
         }
 
-        .grid-item h3 {
+        .grid-item h3, .grid-item-appointment h3 {
             margin: 10px 0;
             font-size: 18px;
         }
 
-        .grid-item p {
+        .grid-item p, .grid-item-appointment p {
             margin: 5px 0;
             font-size: 16px;
         }
 
-        .add-to-cart {
+        .add-to-cart, .book-appointment {
             display: inline-block;
             background-color: #007bff;
             color: white;
@@ -235,6 +235,14 @@
 
         .add-to-cart:hover {
             background-color: #0056b3;
+        }
+
+        .book-appointment {
+            background-color: #28a745;
+        }
+
+        .book-appointment:hover {
+            background-color: #218838;
         }
 
         /* Media queries */
@@ -256,6 +264,10 @@
             .sidebar {
                 width: 70%; /* Adjust sidebar width for smaller screens */
             }
+
+            .search-container {
+                width: 90%;
+            }
         }
     </style>
 </head>
@@ -264,6 +276,7 @@
         <div class="navbar">
             <a href="#contact">Contact</a>
             <a href="#pricing">Medicine</a>
+            <a href="#appointments">Appointments</a>
             <a href="#about">About</a>
             <a href="#services">Services</a>
             <a href="#home">Home</a>
@@ -277,6 +290,7 @@
         <ul>
             <li><a href="#contact">Contact</a></li>
             <li><a href="#pricing">Medicine</a></li>
+            <li><a href="#appointments">Appointments</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#home">Home</a></li>
@@ -287,13 +301,13 @@
     <main>
         <div class="slideshow-container">
             <div class="mySlides">
-                <img src="images/med-ban.jpg">
+                <img src="images/med-ban.jpg" alt="Slide 1">
             </div>
             <div class="mySlides">
-                <img src="images/med-ban2.jpg">
+                <img src="images/med-ban2.jpg" alt="Slide 2">
             </div>
             <div class="mySlides">
-                <img src="images/med-ban3.jpg">
+                <img src="images/med-ban3.jpg" alt="Slide 3">
             </div>
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -310,6 +324,10 @@
         </div>
 
         <div class="med-Services" id="med-Services">
+            <!-- Grid items dynamically generated with JavaScript -->
+        </div>
+
+        <div class="appointment-Services" id="appointment-Services">
             <!-- Grid items dynamically generated with JavaScript -->
         </div>
     </main>
@@ -351,45 +369,48 @@
             dots[slideIndex-1].className += " active";
         }
 
-        // Dummy data for medicines
-        const medicineNames = ["Aspirin", "Paracetamol", "Ibuprofen", "Amoxicillin", "Cetirizine", "Loratadine", "Omeprazole", "Simvastatin","Nexaril","Valtorin", "Dynoxin","Celestol","Medaxon","Vitalixir"," Nexiumin"," Cardiolix","Neuroxinol","Pulmoxin"];
-        const maxMedicines = 15;
+     
 
-        function getRandomMedicine() {
-            const name = medicineNames[Math.floor(Math.random() * medicineNames.length)];
-            const price = `$${(Math.random() * 50 + 1).toFixed(2)}`;
+        // Dummy data for appointments
+        const doctorNames = ["Dr. Smith", "Dr. Johnson", "Dr. Brown", "Dr. Williams", "Dr. Jones", "Dr. Miller", "Dr. Davis", "Dr. Wilson"];
+        const specializations = ["Cardiologist", "Dermatologist", "Neurologist", "Pediatrician", "Psychiatrist", "Orthopedic", "Ophthalmologist", "Dentist"];
+        const maxAppointments = 10;
+
+        function getRandomAppointment() {
+            const name = doctorNames[Math.floor(Math.random() * doctorNames.length)];
+            const specialization = specializations[Math.floor(Math.random() * specializations.length)];
             const imgSrc = `https://via.placeholder.com/150?text=${name}`;
-            return {name, price, imgSrc};
+            return {name, specialization, imgSrc};
         }
 
-        const medicines = Array.from({length: maxMedicines}, getRandomMedicine);
+        const appointments = Array.from({length: maxAppointments}, getRandomAppointment);
 
-        const medServicesContainer = document.getElementById('med-Services');
+        const appointmentServicesContainer = document.getElementById('appointment-Services');
 
-        medicines.forEach(medicine => {
+        appointments.forEach(appointment => {
             const gridItem = document.createElement('div');
-            gridItem.classList.add('grid-item');
+            gridItem.classList.add('grid-item-appointment');
             
             const img = document.createElement('img');
-            img.src = medicine.imgSrc;
-            img.alt = medicine.name;
+            img.src = appointment.imgSrc;
+            img.alt = appointment.name;
             
             const name = document.createElement('h3');
-            name.textContent = medicine.name;
+            name.textContent = appointment.name;
             
-            const price = document.createElement('p');
-            price.textContent = medicine.price;
+            const specialization = document.createElement('p');
+            specialization.textContent = appointment.specialization;
             
             const button = document.createElement('button');
-            button.textContent = "Add to Cart";
-            button.classList.add('add-to-cart');
+            button.textContent = "Book Appointment";
+            button.classList.add('book-appointment');
             
             gridItem.appendChild(img);
             gridItem.appendChild(name);
-            gridItem.appendChild(price);
+            gridItem.appendChild(specialization);
             gridItem.appendChild(button);
             
-            medServicesContainer.appendChild(gridItem);
+            appointmentServicesContainer.appendChild(gridItem);
         });
     </script>
 </body>

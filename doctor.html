@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DoctorConsulting</title>
+    <title>Medicine and Appointments</title>
     <link rel="stylesheet" href="styles/styles2.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <header>
         <a href="#home" class="logo">Scaxxx</a>
         <div class="navbar">
             <a href="#contact">Contact</a>
-            <a href="#pricing">Medicine</a>
+            <a href="Medicines.html">Medicine</a>
             <a href="#about" id="doctor">Consult</a>
             <a href="#services">Services</a>
-            <a href="#home" id="home">Home</a>
+            <a href="index.html" id="home">Home</a>
         </div>
     </header>
     <main>
@@ -26,12 +27,66 @@
                     <p><br>Private consultation + Audio call · Starts at just ₹199</p>
                     <button class="consult">Consult Now</button>
                     <div class="icon">
-                    <p><i style='font-size:24px' class='fas'>&#xf0f0;</i> Verified doctors</p>
+                    <p><i class='bx bx-medal'></i>Verified doctors</p> 
+                    <p><i class='bx bxs-hourglass-bottom'></i>24 hours Services</p>
+                    
                 </div>
                 </div>
         </div>
+        
+
+        <div class="appointment-Services" id="appointment-Services">
+            <!-- Grid items dynamically generated with JavaScript -->
+        </div>
     </main>
-    <footer></footer>
-    <script src="script.js/scripts.js"></script>
+
+    <footer>
+        <!-- Your footer content -->
+    </footer>
+
+    <script>
+
+        // Dummy data for appointments
+        const doctorNames = ["Dr. Smith", "Dr. Johnson", "Dr. Brown", "Dr. Williams", "Dr. Jones", "Dr. Miller", "Dr. Davis", "Dr. Wilson"];
+        const specializations = ["Cardiologist", "Dermatologist", "Neurologist", "Pediatrician", "Psychiatrist", "Orthopedic", "Ophthalmologist", "Dentist"];
+        const maxAppointments = 10;
+
+        function getRandomAppointment() {
+            const name = doctorNames[Math.floor(Math.random() * doctorNames.length)];
+            const specialization = specializations[Math.floor(Math.random() * specializations.length)];
+            const imgSrc = `https://via.placeholder.com/150?text=${name}`;
+            return {name, specialization, imgSrc};
+        }
+
+        const appointments = Array.from({length: maxAppointments}, getRandomAppointment);
+
+        const appointmentServicesContainer = document.getElementById('appointment-Services');
+
+        appointments.forEach(appointment => {
+            const gridItem = document.createElement('div');
+            gridItem.classList.add('grid-item-appointment');
+            
+            const img = document.createElement('img');
+            img.src = appointment.imgSrc;
+            img.alt = appointment.name;
+            
+            const name = document.createElement('h3');
+            name.textContent = appointment.name;
+            
+            const specialization = document.createElement('p');
+            specialization.textContent = appointment.specialization;
+            
+            const button = document.createElement('button');
+            button.textContent = "Book Appointment";
+            button.classList.add('book-appointment');
+            
+            gridItem.appendChild(img);
+            gridItem.appendChild(name);
+            gridItem.appendChild(specialization);
+            gridItem.appendChild(button);
+            
+            appointmentServicesContainer.appendChild(gridItem);
+        });
+    </script>
 </body>
 </html>
